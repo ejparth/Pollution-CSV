@@ -2,21 +2,22 @@ complete <- function(directory,id)
 {
   files_list <- list.files(directory, full.names=TRUE)   #creates a list of file
   #creates an empty data frame
-  
+  nobsNum <-numeric(0)
   dat <- data.frame() 
   for (i in id) {                  #creates an empty data frame
-
+for (i) { 
     dat <- rbind(dat, read.csv(files_list[i]))
-    #loops through the files, rbinding them together 
-
-    id <- dat$ID
-    s <- dat$sulfate
-    n <- dat$nitrate
     
-    d <- c(s,n)
+  #loops through the files, rbinding them together 
+  #id <- dat$ID
+  # s <- dat$sulfate
+  # n <- dat$nitrate
+  #d <- c(s,n)
     
-    nobs<-sum(!is.na(d))
+    #nobs<-sum(!is.na(d))
     
+    nobsNum <- c(nobsNum, nrow(na.omit(dat))) 
+    }
     df <- data.frame(id,nobs)
   }
 df
